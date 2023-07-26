@@ -9,11 +9,11 @@ if (currentUser) location.assign("./index.html");
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  const loginUser = localUsers?.find((user) => user.username === username.value);
   if (!username.value || !password.value) {
     feedback.innerText = "All inputs are required";
   } else {
-    const loginUser = localUsers?.find((user) => user.username === username.value);
-    if (loginUser) {
+    if (loginUser?.username === username.value && loginUser?.password === password.value) {
       loginUser.signed = true;
       localUsers.forEach((user) => {
         user.username === loginUser.username ? (user.signed = true) : user;
